@@ -26,7 +26,7 @@ def initMQTT(url = "localhost", port = 1883, keepalive = 60):
         return None
 utilNext = 0
 foo = ("da:9d:40:1e:7e:f7,e0:f0:81:46:9c:fc,cd:20:25:48:19:69,e0:9c:1c:5b:b6:04,ff:06:e6:2d:39:0f,f8:92:1c:fa:69:fe,e0:de:fc:4b:49:e5,d1:1a:3a:aa:ed:f7,fb:85:25:92:91:cb,e8:9a:04:f2:02:12,fb:22:35:ac:a7:31,e9:30:cd:fd:90:bc,cf:0d:0a:f0:7e:1a,dd:6f:57:29:62:0a,ec:ad:21:9a:13:6b,db:ea:c1:64:7b:34,ec:1d:8c:4a:3e:86,cc:96:bd:6f:65:5d,ff:19:75:20:86:24,00:00:00:00:00:00").split(",")
-rssi = ['-60.0f','-66.0f','-70.0f','-75.0f','-80.0f','-85.0f']
+rssi = [-60.0,-66.0,-70.0,-75.0,-80.0,-85.0]
 def millis():
     return int(round(time.time() * 1000))
 
