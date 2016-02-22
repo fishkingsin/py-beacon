@@ -24,16 +24,21 @@ def initMQTT(url = "localhost", port = 1883, keepalive = 60):
         print(e)
         return None
 
-def startScan(mqttclnt, filter="", topic="/ble/rssi/"):
+def startScan(mqttclnt, filters=[], topic="/ble/rssi/"):
     """Scan BLE beacon and publish to MQTT broker"""
     if mqttclnt:
         scanner = Scanner()
         while True:
             for beacon in scanner.scan():
                 fields = beacon.split(",")
-                if fields[1].startswith(filter):
-                    mqttclnt.publish(topic, '{"id":"%s","val":"%s"}' % (fields[0], fields[5]))
-                    if DEBUG: print(fields[0], fields[5])
+
+                for filter in filters:
+                    if fields[0].startswith(filter):
+                        mqttclnt.publish(topic, '{"id":"%s","val":"%s"}' % (fields[0], fields[5]))
+                        found = True
+                        if DEBUG: print(fields[0], fields[1])
+                    if found == False:
+                        print fields[0] + 'not found in filter '
 
 def init():
     """Read config file"""
